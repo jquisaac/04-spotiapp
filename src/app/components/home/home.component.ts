@@ -9,10 +9,14 @@ import { SpotifyService } from '../../service/spotify.service';
 export class HomeComponent {
 
   nuevasCanciones: any[] = [];
+  cargando: boolean;
 
   constructor(private spotify: SpotifyService) {
+
+    this.cargando = true;
     this.spotify.getNewReleases().subscribe((data: any) => {
       this.nuevasCanciones = data;
+      this.cargando = false;
     });
   }
 }
